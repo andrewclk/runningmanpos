@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  runner_name: MyString
+  area_id: 1
+  status: false
+
+two:
+  runner_name: MyString
+  area_id: 1
+  status: false

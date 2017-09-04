@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="row large-12 panel">
+  <h1>RunningMan Homemade POS</h1>
+  
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Date</th>
+      <th>Subtotal</th>
+      <!-- <th>Cost</th> -->
+      <th>Total Sales</th>
+      <th>Delivery</th>
+      <th>Runner</th>
+      <!-- <th>Profit</th> -->
+      <th>Gst</th>
+      <th>Discount</th>
+      <th>Area</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.order_id, order %></td>
+        <td><%= order.c_date %></td>
+        <td><%= order.subtotal %></td>
+        <!-- <td><%= order.cost %></td> -->
+        <td><%= order.sales %></td>
+        <td><%= order.delivery %></td>
+        <td><%= order.runner_id %></td>
+        <!-- <td><%= order.profit %></td> -->
+        <td><%= order.gst %></td>
+        <td><%= order.discount %></td>
+        <td><%= order.area_id %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path, class: "alert button" %>
+</div>

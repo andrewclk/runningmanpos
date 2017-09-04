@@ -1,0 +1,12 @@
+<%= simple_form_for(@runner) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :runner_name %>
+    <%= f.input :area, collection: [ "Setapak", "Mahkota Cheras", "Ampang", "Cheras", "PJ", "Bangsar", "KL", "Sri Petaling", "Subang Jaya"] %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

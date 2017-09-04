@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @order.order_id %>
+</p>
+
+<p>
+  <strong>Sales:</strong>
+  <%= @order.sales %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @order.cost %>
+</p>
+
+<p>
+  <strong>Delivery:</strong>
+  <%= @order.delivery %>
+</p>
+
+<p>
+  <strong>Runner:</strong>
+  <%= @order.runner_id %>
+</p>
+
+<p>
+  <strong>Profit:</strong>
+  <%= @order.profit %>
+</p>
+
+<p>
+  <strong>Gst:</strong>
+  <%= @order.gst %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @order.discount %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @order.area_id %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

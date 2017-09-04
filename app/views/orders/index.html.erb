@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+
+
+  <h1>RunningMan Homemade POS</h1>
+  
+<div class="column panel large-12">
+  <%= link_to 'Runner List', runners_path, class: "info button" %>
+  <%= link_to 'Reports', report_path, class: "success button" %>
+  <%= link_to 'Areas', areas_path, class: "secondary button" %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Date</th>
+      <!-- <th>Subtotal</th> -->
+      <!-- <th>Cost</th> -->
+      <th>Total Sales</th>
+      <!-- <th>Delivery</th> -->
+      <th>Runner</th>
+      <!-- <th>Profit</th> -->
+      <th>Gst</th>
+      <th>Status</th>
+      <!-- <th>Discount</th> -->
+      <th>Area</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.order_id, order %></td>
+        <td><%= order.c_date %></td>
+        <!-- <td><%= order.subtotal %></td> -->
+        <!-- <td><%= order.cost %></td> -->
+        <td><%= order.sales %></td>
+        <!-- <td><%= order.delivery %></td> -->
+        <td><%= order.runner %></td>
+        <!-- <td><%= order.profit %></td> -->
+        <td><%= order.gst %></td>
+        <% if order.paid == true %>
+          <td>Cleared</td>
+        <% else %>
+          <td>Not Clear</td>
+        <% end %>
+        <!-- <td><%= order.discount %></td> -->
+        <% if order.area_id != nil %>
+        <% @area = Area.find(order.area_id) %>
+        <td><%= @area.name %></td>
+        <% else %>
+        <td><%= order.area_id %></td>
+        <% end %>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path, class: "alert button" %>
+
