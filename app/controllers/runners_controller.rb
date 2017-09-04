@@ -5,6 +5,24 @@ class RunnersController < ApplicationController
   # GET /runners.json
   def index
     @runners = Runner.all
+    @runners.each do |x|
+      @orderss = Order.where(runner_id: x.id)
+      @orders = @orderss.where(paid: false)
+      if @orders != nil
+        @total = Array.new
+          @orders.each do |z|
+            @total << z.profit
+          end
+        
+        @sum = 0
+          @total.each do |s|
+            @sum += s
+          end
+        
+        x.balance = @sum
+        x.save
+      end
+    end
   end
 
   # GET /runners/1
