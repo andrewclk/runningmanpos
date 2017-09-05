@@ -22,13 +22,13 @@
 </p>
 
 <p>
-  <strong>Sales:</strong>
+  <strong>Total Sales:</strong>
   <%= @order.sales %>
 </p>
 
 <p>
   <strong>Runner:</strong>
-  <%= @order.runner_id %>
+  <%= @order.runner %>
 </p>
 
 <p>
@@ -48,7 +48,7 @@
 
 <p>
   <strong>Area:</strong>
-  <%= @order.area_id %>
+  <%= @order.area %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

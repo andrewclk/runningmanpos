@@ -9,7 +9,7 @@
     <%= f.input :subtotal, as: :currency %>
     <%= f.input :cost, as: :currency %>
     <%= f.input :delivery, label: "Delivery", as: :currency, input_html: {value: f.object.delivery || '0'} %>
-    <%= f.input :discount, label: "Discount %", as: :integer, input_html: {value: f.object.discount || '0'}  %>
+    <%= f.input :discount, label: "Discount Value (Not %)", as: :currency, input_html: {value: f.object.discount || '0'}  %>
     <%= f.input :runner, collection: @runnerlist %>
     <%= f.input :area, collection: @arealist %>
     <%= f.input :c_date, label: "Date (Leave empty if same day)", as: :date, html5: true %>

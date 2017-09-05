@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     @order.gst = @beforegst*0.06
     
       if @order.discount != nil or @order.discount != 0
-        @beforegst = @beforegst*((100-@order.discount)/100.to_f)
+        @beforegst = @beforegst-@order.discount
       end
     @order.sales = @order.gst+@beforegst
     @order.profit = @order.sales-@order.cost
