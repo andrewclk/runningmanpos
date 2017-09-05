@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.last(10)
+    @orders = Order.all.order('created_at DESC')
   end
 
   def all
@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
       end
     @beforegst = @order.subtotal+@order.delivery
     @order.gst = @beforegst*0.06
-    
+    byebug
       if @order.discount != nil or @order.discount != 0
         @beforegst = @beforegst-@order.discount
       end
