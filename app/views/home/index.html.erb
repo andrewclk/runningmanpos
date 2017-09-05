@@ -1,4 +1,48 @@
 <div class="row large-12 panel">
 	<h1>Sales Report</h1>
-	
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Total Order</th>
+      <th>Total Sales</th>
+      <th>GST</th>
+      <th>Profit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @areas.each do |area| %>
+      <tr>
+        <td><%= area.name %></td>
+        <% @a = @orders.where(area: area.name) %>
+        <td><%= @a.count %></td>
+        <% @sum = 0 %>
+        <% @a.each do |x| %>
+        	<% @sum += x.sales %>
+        <% end %>
+        <td><%= @sum %></td>
+        <% @gst = 0 %>
+        <% @a.each do |y| %>
+        	<% @gst += y.gst %>
+        <% end %>
+        <td><%= @gst %></td>
+        <% @profit = 0 %>
+        <% @a.each do |z| %>
+        	<% @profit += z.profit %>
+        <% end %>
+        <td><%= @profit %></td>
+
+        <td><%= link_to 'Show', area %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
 </div>
