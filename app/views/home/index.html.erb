@@ -17,7 +17,8 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.name %></td>
-        <% @a = @orders.where(area: area.name) %>
+        <% @b = @orders.where(c_date: Date.today) %>
+        <% @a = @b.where(area: area.name) %>
         <td><%= @a.count %></td>
         <% @sum = 0 %>
         <% @a.each do |x| %>

@@ -9,7 +9,29 @@
   <%= link_to 'Reports', report_path, class: "success button" %>
   <%= link_to 'Areas', areas_path, class: "secondary button" %>
 </div>
+        <div class="column large-6">
+          <div class="column large-8">
+            <%= form_tag(orders_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Order Number here...", autofocus: true %>
+          </div>
+          <div class="column large-4">
+            <%= button_tag "Search", class: "small success" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="column large-6">
+          <div class="column large-8">
+          <%= form_tag(orders_path, :method => "get", id: "datefilter") do %>
+          <%= date_field_tag :filter, params[:filter], class: "span2", id: "dp1" %>
 
+          </div>
+           <div class="column large-4">
+            <%= button_tag "Filter", class: "small" %>
+            <% end %>
+          </div>
+        </div>
+    
+<h5><%= will_paginate @orders %></h5>
 <table>
   <thead>
     <tr>
@@ -59,7 +81,7 @@
     <% end %>
   </tbody>
 </table>
-
+<h5><%= will_paginate @orders %></h5>
 <br>
 
 <%= link_to 'New Order', new_order_path, class: "alert button" %>

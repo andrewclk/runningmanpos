@@ -4,7 +4,16 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order('created_at DESC')
+    if params[:search]
+      @orders = Order.search(params[:search]).order("created_at ASC").paginate(:page => params[:page], :per_page => 10)
+    elsif params[:filter]
+      @a = params[:filter].to_date
+      @orderss = Order.where(c_date: @a).order('created_at ASC')
+      @orders = @orderss.paginate(:page => params[:page], :per_page => 20)
+    else
+      @orders = Order.all.order('created_at DESC')
+      @orders = @orders.paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   def all
