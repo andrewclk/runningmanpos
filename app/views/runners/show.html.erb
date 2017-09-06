@@ -29,14 +29,14 @@
 <% if @runner.balance != 0 %>
 	  <%= form_tag(runners_pay_path, :method => "post", id: "paid") do %>
       <%= hidden_field :id, params[:runner], :value => @runner.id %>
-      <%= button_tag "Clear ALL!", class: "success button" %>
+      <%= button_tag "Clear ALL!", class: "success button", data: { confirm: 'Are you sure?' } %>
       <% end %>
 <% end %>
 <% if params[:filter] %>
     <%= form_tag(runners_pay_path, :method => "post", id: "paid") do %>
       <%= hidden_field :id, params[:runner], :value => @runner.id %>
       <%= hidden_field :id, params[:date], :value => params[:filter] %>
-      <%= button_tag "Clear TODAY ONLY!", class: "alert button" %>
+      <%= button_tag "Clear TODAY ONLY!", class: "alert button", data: { confirm: 'Are you sure?' } %>
       <% end %>
 <% end %>
 <table>
