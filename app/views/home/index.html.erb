@@ -1,6 +1,24 @@
 <div class="row large-12 panel">
 	<h1>Sales Report</h1>
+        <div class="column large-12">
+          <div class="column large-8">
+          <%= form_tag(report_path, :method => "get", id: "datefilter") do %>
+          <%= date_field_tag :filter, params[:filter], class: "span2", id: "dp1" %>
 
+          </div>
+           <div class="column large-4">
+            <%= button_tag "Filter", class: "small" %>
+            <% end %>
+          </div>
+          <h4>Total Orders: <%= @orders.count %></h4>
+          <% @sales = 0 %>
+          <h4>Total Sales: 
+          	<% @orders.each do |z| %>
+          		<% @sales += z.sales %>
+          	<% end %>
+          	RM <%= @sales %>
+          </h4>
+        </div>
 <table>
   <thead>
     <tr>
@@ -17,8 +35,7 @@
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.name %></td>
-        <% @b = @orders.where(c_date: Date.today) %>
-        <% @a = @b.where(area: area.name) %>
+        <% @a = @orders.where(area: area.name) %>
         <td><%= @a.count %></td>
         <% @sum = 0 %>
         <% @a.each do |x| %>
