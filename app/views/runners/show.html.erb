@@ -13,13 +13,30 @@
   <strong>Order Sent:</strong>
   <%= @orders.count %>
 </p>
+        <div class="column large-4">
+          <%= form_tag(runner_path, :method => "get", id: "datefilter") do %>
+          <%= date_field_tag :filter, params[:filter], class: "span2", id: "dp1" %>
+
+          </div>
+           <div class="column large-8">
+            <%= button_tag "Filter", class: "small" %>
+            <% end %>
+        </div>
+
 <h4>Kena Bayar = 
 	RM<%= @runner.balance %>
 </h4>
 <% if @runner.balance != 0 %>
 	  <%= form_tag(runners_pay_path, :method => "post", id: "paid") do %>
       <%= hidden_field :id, params[:runner], :value => @runner.id %>
-      <%= button_tag "Dah Bayar!", class: "success button" %>
+      <%= button_tag "Clear ALL!", class: "success button" %>
+      <% end %>
+<% end %>
+<% if params[:filter] %>
+    <%= form_tag(runners_pay_path, :method => "post", id: "paid") do %>
+      <%= hidden_field :id, params[:runner], :value => @runner.id %>
+      <%= hidden_field :id, params[:date], :value => params[:filter] %>
+      <%= button_tag "Clear TODAY ONLY!", class: "alert button" %>
       <% end %>
 <% end %>
 <table>

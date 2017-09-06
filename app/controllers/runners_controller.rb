@@ -29,18 +29,23 @@ class RunnersController < ApplicationController
   # GET /runners/1.json
   def show
     @runner = Runner.find(@runner.id)
-    @orderss = Order.where(runner_id: @runner.id)
-    @orders = @orderss.where(paid: false)
-    @total = Array.new
-    @orders.each do |x|
-      @total << x.profit
+    if params[:filter]
+      @a = params[:filter].to_date
+      @ordersz = Order.where(runner_id: @runner.id)
+      @orderss = @ordersz.where(c_date: @a)
+
+    else
+      @orderss = Order.where(runner_id: @runner.id)
     end
-    
-    @sum = 0
-    @total.each do |s|
-      @sum += s
-    end
-    
+      @orders = @orderss.where(paid: false)
+      @total = Array.new
+      @orders.each do |x|
+        @total << x.profit
+      end
+      @sum = 0
+      @total.each do |s|
+        @sum += s
+      end
     @runner.balance = @sum
     @runner.save
   end
@@ -55,14 +60,26 @@ class RunnersController < ApplicationController
   end
 
   def pay
-    
-    x = params[:id][0].to_i
-    @runner = Runner.find(x)
-    @sent = Order.where(runner_id: @runner)
-    @clear = @sent.where(paid: false)
-    @clear.each do |d|
-      d.paid = true
-      d.save
+    if params[:id][1] != nil
+        z = params[:id][1].to_date
+        x = params[:id][0].to_i
+        @runner = Runner.find(x)
+        @today = Order.where(c_date: z)
+        @sent = @today.where(runner_id: @runner)
+        @clear = @sent.where(paid: false)
+        @clear.each do |d|
+          d.paid = true
+          d.save
+      end
+    else
+        x = params[:id][0].to_i
+        @runner = Runner.find(x)
+        @sent = Order.where(runner_id: @runner)
+        @clear = @sent.where(paid: false)
+        @clear.each do |d|
+          d.paid = true
+          d.save
+        end
     end
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Payment was successfully made.' }
