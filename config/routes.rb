@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admins/sign_up' => redirect('/')
   devise_for :admins
   resources :areas
   resources :runners
