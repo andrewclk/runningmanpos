@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-
+<% if current_admin %>
 
   <h1>RunningMan Homemade POS</h1>
   
@@ -85,4 +85,4 @@
 <br>
 
 <%= link_to 'New Order', new_order_path, class: "alert button" %>
-
+<% end %>
