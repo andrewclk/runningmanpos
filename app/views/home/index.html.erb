@@ -18,7 +18,13 @@
           	<% end %>
           	RM <%= @sales %>
           </h4>
-
+          <% @profit = 0 %>
+          <h4>Total Profit:
+            <% @orders.each do |x| %>
+              <% @profit += x.profit %>
+            <% end %>
+            RM <%= @profit %>
+          </h4>
         </div>
 <table>
   <thead>
